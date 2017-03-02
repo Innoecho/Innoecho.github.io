@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>飞控固件编译 | InnoBlog</title>
+  <meta name="author" content="Innoecho">
+  
+  <meta name="description" content="Innoecho&#39;s Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="飞控固件编译"/>
+  <meta property="og:site_name" content="InnoBlog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/img/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="InnoBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">InnoBlog</a></h1>
+  <h2><a href="/">May The Force Be With You</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-02T02:28:17.000Z"><a href="/2017/03/02/固件编译/">2017-03-02</a></time>
+      
+      
+  
+    <h1 class="title">飞控固件编译</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="PX4"><a href="#PX4" class="headerlink" title="PX4"></a>PX4</h1><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To compile the code, <strong>CMake</strong> and <strong>GCC</strong> are necessary.</p>
+<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><pre><code>sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
+sudo apt-get update
+sudo apt-get install cmake -y
+</code></pre><h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><pre><code>sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded -y
+sudo apt-get update
+sudo apt-get install gcc-arm-none-eabi -y
+</code></pre><h2 id="NuttX-based-hardware"><a href="#NuttX-based-hardware" class="headerlink" title="NuttX based hardware"></a>NuttX based hardware</h2><p>Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can deinstalled without side effects:</p>
+<pre><code>sudo apt-get remove modemmanager
+</code></pre><h2 id="Permission-Setup"><a href="#Permission-Setup" class="headerlink" title="Permission Setup"></a>Permission Setup</h2><p>Because the “tty” belong to the group “dialout”, to operate the pixhawk the user needs to be added to the group “dialout”:</p>
+<pre><code>sudo usermod -a -G dialout $USER
+</code></pre><p>And then you have to logout and login again, as this is only changed after a new login.</p>
+<h2 id="Compiling-on-the-Console"><a href="#Compiling-on-the-Console" class="headerlink" title="Compiling on the Console"></a>Compiling on the Console</h2><p>We default to ‘~/src/Firmware’ and clone the upstream repository. </p>
+<pre><code>mkdir -p ~/src
+cd ~/src
+git clone https://github.com/PX4/Firmware.git
+cd Firmware
+git submodule update --init --recursive
+make px4fmu-v2_default
+</code></pre><h2 id="Upload-to-the-pixhawk"><a href="#Upload-to-the-pixhawk" class="headerlink" title="Upload to the pixhawk"></a>Upload to the pixhawk</h2><p>By appending ‘upload’ to these commands the compiled binary will be uploaded via USB to the pixhawk:</p>
+<pre><code>make px4fmu-v2_default upload
+</code></pre><p>A successful run will end with this output:</p>
+<pre><code>Erase  : [====================] 100.0%
+Program: [====================] 100.0%
+Verify : [====================] 100.0%
+Rebooting.
+
+[100%] Built target upload
+</code></pre><h1 id="APM"><a href="#APM" class="headerlink" title="APM"></a>APM</h1><p><strong>If you have configured the environment for PX4, you can clone the APM code and compile it directly.</strong></p>
+<h2 id="Installation-1"><a href="#Installation-1" class="headerlink" title="Installation"></a>Installation</h2><p>There is a script to config the environment easily， what we need to do is just clone from ardupilot and run this script:</p>
+<pre><code>git clone https://github.com/diydrones/ardupilot.git
+ardupilot/Tools/scripts/install-prereqs-ubuntu.sh -y
+</code></pre><p>Reload the path (log-out and log-in to make permanent):</p>
+<pre><code>. ~/.profile
+</code></pre><h2 id="Compiling-on-the-Console-1"><a href="#Compiling-on-the-Console-1" class="headerlink" title="Compiling on the Console"></a>Compiling on the Console</h2><p>Build for Copter</p>
+<pre><code>cd ardupilot/ArduCopter
+make px4-v2
+</code></pre><h2 id="Loading-firmware"><a href="#Loading-firmware" class="headerlink" title="Loading firmware"></a>Loading firmware</h2><p>To load the firmware onto the board use</p>
+<pre><code>make px4-v1-upload
+</code></pre><p>After it says “waiting for bootloader” plugin your Pixhawk on USB.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/UAV/">UAV</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2017/03/02/固件编译/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Ubuntu/">Ubuntu</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>2</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>2</small></li>
+  
+    <li><a href="/tags/UAV/">UAV</a><small>2</small></li>
+  
+    <li><a href="/tags/Ubuntu/">Ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/VPN/">VPN</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 Innoecho
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

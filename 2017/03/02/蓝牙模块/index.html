@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>蓝牙模块 | InnoBlog</title>
+  <meta name="author" content="Innoecho">
+  
+  <meta name="description" content="Innoecho&#39;s Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="蓝牙模块"/>
+  <meta property="og:site_name" content="InnoBlog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/img/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="InnoBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">InnoBlog</a></h1>
+  <h2><a href="/">May The Force Be With You</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-02T02:30:07.000Z"><a href="/2017/03/02/蓝牙模块/">2017-03-02</a></time>
+      
+      
+  
+    <h1 class="title">蓝牙模块</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="针脚定义"><a href="#针脚定义" class="headerlink" title="针脚定义"></a>针脚定义</h1><p>蓝牙模块为HC-05主从机一体蓝牙模块</p>
+<p><img src="http://i3.buimg.com/fa034c4a61759be9.png" alt="蓝牙模块"></p>
+<p>6个针脚定义如下：</p>
+<ol>
+<li>VCC：3.3V</li>
+<li>GND：地线</li>
+<li>RX：接收</li>
+<li>TX：发送</li>
+<li>STATE：输出针脚，若蓝牙模块处于连接状态则为高电平，否则为低电平</li>
+<li>EN：用来控制AT指令模式与正常工作模式的切换，我们所使用的模块包含一个按键，这个按键可以使EN置高或置低，因此可以忽略EN针脚</li>
+</ol>
+<h1 id="模式切换"><a href="#模式切换" class="headerlink" title="模式切换"></a>模式切换</h1><p>有两种进入AT指令模式的方法：</p>
+<ol>
+<li>在模块上电前，按住按键使EN置高，然后上电，此时LED灯慢闪（2秒一次），此种方式波特率为38400</li>
+<li>正常上电，此时LED灯快闪（1秒两次），之后按一次按键，LED灯不会发生变化，但是此时已进入AT模式，此种方式波特率为9600</li>
+</ol>
+<h1 id="常用AT指令"><a href="#常用AT指令" class="headerlink" title="常用AT指令"></a>常用AT指令</h1><ul>
+<li>测试指令：<strong>AT</strong>，返回<strong>OK</strong></li>
+<li>查询版本号：<strong>AT+VERSION?</strong>，返回软件版本号</li>
+<li>查询模块地址：<strong>AT+ADDR?</strong>，返回模块地址</li>
+<li>查询模块名称：<strong>AT+NAME?</strong>，返回模块名称，<strong>但是这条命令在我使用的模块下无法返回名称</strong></li>
+<li>设置模块名称：<strong>AT+NAME=<param></strong>，返回<strong>OK</strong>则设置成功</li>
+<li>查询模块配对码：<strong>AT+PSWD?</strong>，返回模块配对码</li>
+<li>设置模块配对码：<strong>AT+PSWD=<param></strong>，返回<strong>OK</strong>则设置成功 </li>
+<li>查询模块串口参数：<strong>AT+UART?</strong>，返回模块串口参数（波特率，停止位，校验位）</li>
+<li>设置模块串口参数：<strong>AT+UART=<param>,<param2>,<param3></param3></param2></strong>，返回<strong>OK</strong>则设置成功 </li>
+</ul>
+<h1 id="与飞控连接"><a href="#与飞控连接" class="headerlink" title="与飞控连接"></a>与飞控连接</h1><p>设置好蓝牙模块后，将其与飞控板连接，这里我所使用的是Pixhawk，它的TELEM1端口从左至右排序依次为：VCC，RX，TX，空，空，GND</p>
+<p>依照上述方式将蓝牙模块与飞控板连接，简单测试Tower可以与Pixhawk正常连接，在此基础上可以开发基于蓝牙的地面站</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/UAV/">UAV</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2017/03/02/蓝牙模块/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Ubuntu/">Ubuntu</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>2</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>2</small></li>
+  
+    <li><a href="/tags/UAV/">UAV</a><small>2</small></li>
+  
+    <li><a href="/tags/Ubuntu/">Ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/VPN/">VPN</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 Innoecho
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
