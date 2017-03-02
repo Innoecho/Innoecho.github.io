@@ -53,45 +53,25 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-03-02T02:33:10.000Z"><a href="/2017/03/02/微信公众号服务接口/">2017-03-02</a></time>
+        <time datetime="2017-03-02T08:24:01.000Z"><a href="/2017/03/02/Sublime中文输入/">2017-03-02</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/03/02/微信公众号服务接口/">微信公众号服务接口</a></h1>
+    <h1 class="title"><a href="/2017/03/02/Sublime中文输入/">Sublime中文输入</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="在SAE上搭建服务"><a href="#在SAE上搭建服务" class="headerlink" title="在SAE上搭建服务"></a>在SAE上搭建服务</h1><p>在<a href="http://sae.sina.com.cn/" target="_blank" rel="external">SAE</a>注册登陆后，创建新的应用，填写二级域名，<strong>记下这个地址</strong>，选择空的Python应用，因为一直用的Git，所以顺理成章的选了Git</p>
-<h2 id="在本地初始化仓库并配置远程仓库"><a href="#在本地初始化仓库并配置远程仓库" class="headerlink" title="在本地初始化仓库并配置远程仓库"></a>在本地初始化仓库并配置远程仓库</h2><pre><code>git init
-git remote add sae https://git.sinacloud.com/innoechowechat
-</code></pre><h2 id="代码框架"><a href="#代码框架" class="headerlink" title="代码框架"></a>代码框架</h2><p>首先是config.yaml</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">name: InnoechoWechat</div><div class="line">version: <span class="number">1</span></div><div class="line"></div><div class="line">libraries:</div><div class="line">- name: webpy </div><div class="line">  version: <span class="string">"0.36"</span></div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
-<p>接下来是index.wsgi</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sae</div><div class="line"><span class="keyword">import</span> web</div><div class="line"></div><div class="line">sae.add_vendor_dir(<span class="string">'vendor'</span>)</div><div class="line"></div><div class="line"><span class="keyword">from</span> WechatInterface <span class="keyword">import</span> WechatInterface</div><div class="line"></div><div class="line">urls = (</div><div class="line"><span class="string">'/wechat'</span>,<span class="string">'WechatInterface'</span></div><div class="line">)</div><div class="line"></div><div class="line">app_root = os.path.dirname(__file__)</div><div class="line">templates_root = os.path.join(app_root, <span class="string">'templates'</span>)</div><div class="line">render = web.template.render(templates_root)</div><div class="line"></div><div class="line">app = web.application(urls, globals()).wsgifunc()        </div><div class="line">application = sae.create_wsgi_app(app)</div></pre></td></tr></table></figure>
-<p>然后我们需要创建WechatInterface类来响应请求</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"><span class="keyword">import</span> web</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WechatInterface</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.app_root = os.path.dirname(__file__)</div><div class="line">        self.templates_root = os.path.join(self.app_root, <span class="string">'templates'</span>)</div><div class="line">        self.render = web.template.render(self.templates_root)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment">#获取输入参数</span></div><div class="line">        data = web.input()</div><div class="line">        signature = data.signature</div><div class="line">        timestamp = data.timestamp</div><div class="line">        nonce = data.nonce</div><div class="line">        echostr = data.echostr</div><div class="line">        <span class="comment">#微信设置的token</span></div><div class="line">        token = <span class="string">"000400"</span> </div><div class="line">        <span class="comment">#字典序排序</span></div><div class="line">        list = [token,timestamp,nonce]</div><div class="line">        list.sort()</div><div class="line">        sha1 = hashlib.sha1()</div><div class="line">        map(sha1.update,list)</div><div class="line">        hashcode = sha1.hexdigest()</div><div class="line">        <span class="comment">#sha1加密算法        </span></div><div class="line"></div><div class="line">        <span class="comment">#如果是来自微信的请求，则回复echostr</span></div><div class="line">        <span class="keyword">if</span> hashcode == signature:</div><div class="line">            <span class="keyword">return</span> echostr</div></pre></td></tr></table></figure>
-<p>至此代码框架搭建完毕</p>
-<h2 id="部署代码"><a href="#部署代码" class="headerlink" title="部署代码"></a>部署代码</h2><p>按照下面的操作，将代码部署到SAE</p>
-<pre><code>git add .
-git commit -m &quot;Test&quot;
-git push sae master:1
-</code></pre><h1 id="配置微信公众平台"><a href="#配置微信公众平台" class="headerlink" title="配置微信公众平台"></a>配置微信公众平台</h1><p>在<a href="http://mp.weixin.qq.com" target="_blank" rel="external">微信公众平台</a>注册登陆后，选择<strong>开发</strong>选项卡中的基本配置，然后修改服务器配置。</p>
-<pre><code>URL = http://innoechowechat.applinzi.com/wechat
-Token = 000400
-</code></pre><p>这两个需要与SAE上的设置保持一致，URL即服务的地址，即SAE的应用地址+服务地址，Token则相当于密码，随意取即可。</p>
-<p>正常提交之后，微信公众号接收到的信息就会被转发到SAE上的服务上面，但是此时这个服务并没有任何作用，仅能通过微信的认证而已</p>
-<h1 id="添加echo服务"><a href="#添加echo服务" class="headerlink" title="添加echo服务"></a>添加echo服务</h1><p>在WechatInterface类中添加POST方法（<strong>记得import相关的依赖</strong>）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">POST</span><span class="params">(self)</span>:</span>   </div><div class="line">    <span class="comment">#获得post来的数据     </span></div><div class="line">    str_xml = web.data()</div><div class="line">    <span class="comment">#进行XML解析</span></div><div class="line">    xml = etree.fromstring(str_xml)</div><div class="line">    <span class="comment">#获得用户所输入的内容</span></div><div class="line">    content = xml.find(<span class="string">"Content"</span>).text</div><div class="line">    msgType = xml.find(<span class="string">"MsgType"</span>).text</div><div class="line">    fromUser = xml.find(<span class="string">"FromUserName"</span>).text</div><div class="line">    toUser = xml.find(<span class="string">"ToUserName"</span>).text</div><div class="line">    <span class="keyword">return</span> self.render.reply_text(fromUser,toUser,int(time.time()),content)</div></pre></td></tr></table></figure>
-<p>另外还需要在templates目录下创建reply_text.xml模板文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$def with (toUser,fromUser,createTime,content)</div><div class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ToUserName</span>&gt;</span>&lt;![CDATA[$toUser]]&gt;<span class="tag">&lt;/<span class="name">ToUserName</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">FromUserName</span>&gt;</span>&lt;![CDATA[$fromUser]]&gt;<span class="tag">&lt;/<span class="name">FromUserName</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">CreateTime</span>&gt;</span>$createTime<span class="tag">&lt;/<span class="name">CreateTime</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">MsgType</span>&gt;</span>&lt;![CDATA[text]]&gt;<span class="tag">&lt;/<span class="name">MsgType</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">Content</span>&gt;</span>&lt;![CDATA[$content]]&gt;<span class="tag">&lt;/<span class="name">Content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>简单的echo服务搭建完毕～</p>
-
+        <p>解决Sublime中无法输入中文的问题<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/Sublime中文输入/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -109,31 +89,25 @@ Token = 000400
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-03-02T02:32:42.000Z"><a href="/2017/03/02/Sublime配置Python解释器/">2017-03-02</a></time>
+        <time datetime="2017-03-02T02:33:10.000Z"><a href="/2017/03/02/微信公众号服务接口/">2017-03-02</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/03/02/Sublime配置Python解释器/">Sublime配置Python解释器</a></h1>
+    <h1 class="title"><a href="/2017/03/02/微信公众号服务接口/">微信公众号服务接口</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ul>
-<li>在Terminal中输入which python3.5确定python安装位置</li>
-<li>在Sublime中选择：Tools -&gt; Bulid System -&gt; New Build System</li>
-<li><p>将弹出的配置文件修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;cmd&quot;: [&quot;python安装位置&quot;,&quot;-u&quot;,&quot;$file&quot;],</div><div class="line">    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,</div><div class="line">    &quot;selector&quot;: &quot;source.python&quot;,</div><div class="line">    &quot;encoding&quot;: &quot;cp936&quot;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置文件保存为：Packages -&gt; User -&gt; Python.sublime-build</p>
-</li>
-</ul>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>print(1)，crtl+B运行</p>
-
+        <p>利用Python建立简单的微信公众号服务接口<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/微信公众号服务接口/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -161,40 +135,15 @@ Token = 000400
     </header>
     <div class="entry">
       
-        <h1 id="针脚定义"><a href="#针脚定义" class="headerlink" title="针脚定义"></a>针脚定义</h1><p>蓝牙模块为HC-05主从机一体蓝牙模块</p>
-<p><img src="http://i3.buimg.com/fa034c4a61759be9.png" alt="蓝牙模块"></p>
-<p>6个针脚定义如下：</p>
-<ol>
-<li>VCC：3.3V</li>
-<li>GND：地线</li>
-<li>RX：接收</li>
-<li>TX：发送</li>
-<li>STATE：输出针脚，若蓝牙模块处于连接状态则为高电平，否则为低电平</li>
-<li>EN：用来控制AT指令模式与正常工作模式的切换，我们所使用的模块包含一个按键，这个按键可以使EN置高或置低，因此可以忽略EN针脚</li>
-</ol>
-<h1 id="模式切换"><a href="#模式切换" class="headerlink" title="模式切换"></a>模式切换</h1><p>有两种进入AT指令模式的方法：</p>
-<ol>
-<li>在模块上电前，按住按键使EN置高，然后上电，此时LED灯慢闪（2秒一次），此种方式波特率为38400</li>
-<li>正常上电，此时LED灯快闪（1秒两次），之后按一次按键，LED灯不会发生变化，但是此时已进入AT模式，此种方式波特率为9600</li>
-</ol>
-<h1 id="常用AT指令"><a href="#常用AT指令" class="headerlink" title="常用AT指令"></a>常用AT指令</h1><ul>
-<li>测试指令：<strong>AT</strong>，返回<strong>OK</strong></li>
-<li>查询版本号：<strong>AT+VERSION?</strong>，返回软件版本号</li>
-<li>查询模块地址：<strong>AT+ADDR?</strong>，返回模块地址</li>
-<li>查询模块名称：<strong>AT+NAME?</strong>，返回模块名称，<strong>但是这条命令在我使用的模块下无法返回名称</strong></li>
-<li>设置模块名称：<strong>AT+NAME=<param></strong>，返回<strong>OK</strong>则设置成功</li>
-<li>查询模块配对码：<strong>AT+PSWD?</strong>，返回模块配对码</li>
-<li>设置模块配对码：<strong>AT+PSWD=<param></strong>，返回<strong>OK</strong>则设置成功 </li>
-<li>查询模块串口参数：<strong>AT+UART?</strong>，返回模块串口参数（波特率，停止位，校验位）</li>
-<li>设置模块串口参数：<strong>AT+UART=<param>,<param2>,<param3></param3></param2></strong>，返回<strong>OK</strong>则设置成功 </li>
-</ul>
-<h1 id="与飞控连接"><a href="#与飞控连接" class="headerlink" title="与飞控连接"></a>与飞控连接</h1><p>设置好蓝牙模块后，将其与飞控板连接，这里我所使用的是Pixhawk，它的TELEM1端口从左至右排序依次为：VCC，RX，TX，空，空，GND</p>
-<p>依照上述方式将蓝牙模块与飞控板连接，简单测试Tower可以与Pixhawk正常连接，在此基础上可以开发基于蓝牙的地面站</p>
-
+        <p>UAV上使用的蓝牙模块以及与Pixhawk的连接<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/蓝牙模块/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -222,51 +171,15 @@ Token = 000400
     </header>
     <div class="entry">
       
-        <h1 id="PX4"><a href="#PX4" class="headerlink" title="PX4"></a>PX4</h1><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To compile the code, <strong>CMake</strong> and <strong>GCC</strong> are necessary.</p>
-<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><pre><code>sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update
-sudo apt-get install cmake -y
-</code></pre><h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><pre><code>sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded -y
-sudo apt-get update
-sudo apt-get install gcc-arm-none-eabi -y
-</code></pre><h2 id="NuttX-based-hardware"><a href="#NuttX-based-hardware" class="headerlink" title="NuttX based hardware"></a>NuttX based hardware</h2><p>Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can deinstalled without side effects:</p>
-<pre><code>sudo apt-get remove modemmanager
-</code></pre><h2 id="Permission-Setup"><a href="#Permission-Setup" class="headerlink" title="Permission Setup"></a>Permission Setup</h2><p>Because the “tty” belong to the group “dialout”, to operate the pixhawk the user needs to be added to the group “dialout”:</p>
-<pre><code>sudo usermod -a -G dialout $USER
-</code></pre><p>And then you have to logout and login again, as this is only changed after a new login.</p>
-<h2 id="Compiling-on-the-Console"><a href="#Compiling-on-the-Console" class="headerlink" title="Compiling on the Console"></a>Compiling on the Console</h2><p>We default to ‘~/src/Firmware’ and clone the upstream repository. </p>
-<pre><code>mkdir -p ~/src
-cd ~/src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
-git submodule update --init --recursive
-make px4fmu-v2_default
-</code></pre><h2 id="Upload-to-the-pixhawk"><a href="#Upload-to-the-pixhawk" class="headerlink" title="Upload to the pixhawk"></a>Upload to the pixhawk</h2><p>By appending ‘upload’ to these commands the compiled binary will be uploaded via USB to the pixhawk:</p>
-<pre><code>make px4fmu-v2_default upload
-</code></pre><p>A successful run will end with this output:</p>
-<pre><code>Erase  : [====================] 100.0%
-Program: [====================] 100.0%
-Verify : [====================] 100.0%
-Rebooting.
-
-[100%] Built target upload
-</code></pre><h1 id="APM"><a href="#APM" class="headerlink" title="APM"></a>APM</h1><p><strong>If you have configured the environment for PX4, you can clone the APM code and compile it directly.</strong></p>
-<h2 id="Installation-1"><a href="#Installation-1" class="headerlink" title="Installation"></a>Installation</h2><p>There is a script to config the environment easily， what we need to do is just clone from ardupilot and run this script:</p>
-<pre><code>git clone https://github.com/diydrones/ardupilot.git
-ardupilot/Tools/scripts/install-prereqs-ubuntu.sh -y
-</code></pre><p>Reload the path (log-out and log-in to make permanent):</p>
-<pre><code>. ~/.profile
-</code></pre><h2 id="Compiling-on-the-Console-1"><a href="#Compiling-on-the-Console-1" class="headerlink" title="Compiling on the Console"></a>Compiling on the Console</h2><p>Build for Copter</p>
-<pre><code>cd ardupilot/ArduCopter
-make px4-v2
-</code></pre><h2 id="Loading-firmware"><a href="#Loading-firmware" class="headerlink" title="Loading firmware"></a>Loading firmware</h2><p>To load the firmware onto the board use</p>
-<pre><code>make px4-v1-upload
-</code></pre><p>After it says “waiting for bootloader” plugin your Pixhawk on USB.</p>
-
+        <p>关于PX4以及APM飞控固件的编译问题<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/固件编译/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -294,25 +207,15 @@ make px4-v2
     </header>
     <div class="entry">
       
-        <h1 id="下载Gradle"><a href="#下载Gradle" class="headerlink" title="下载Gradle"></a>下载Gradle</h1><p>切换到项目的根目录，执行</p>
-<p><code>./gradlew -v</code></p>
-<p>查看所使用的Gradle的版本，如果是第一次执行，则会下载所需版本。</p>
-<h1 id="下载依赖项"><a href="#下载依赖项" class="headerlink" title="下载依赖项"></a>下载依赖项</h1><p>执行</p>
-<p><code>./gradlew clean</code></p>
-<p>下载所需依赖项，这步遇到较多问题：</p>
-<ul>
-<li><strong>SDK Location not found</strong>：执行<code>export ANDROID_HOME=&lt;sdk dir&gt;</code>配置环境变量</li>
-<li><strong>failed to find Build Tools revision</strong>：修改build.gradle文件</li>
-</ul>
-<p>我编译的是DroneKit的例子Hello Drone，这个例子教程中导入的库是<strong>‘com.o3dr.android:dronekit-android:2.3.+’</strong>，github上的版本导入的库是<strong>‘com.o3dr.android:dronekit-android:2.7.+’</strong>，然而这两种都会提示无法找到对应的库，在<a href="https://jcenter.bintray.com/com/o3dr/" target="_blank" rel="external">jcenter</a>中最新的库是<strong>‘com.o3dr.android:dronekit-android:2.9.0’</strong>，导入这个库就不会报错了。</p>
-<h1 id="编译APK"><a href="#编译APK" class="headerlink" title="编译APK"></a>编译APK</h1><p>执行</p>
-<p><code>./gradlew build</code></p>
-<p>编译生成APK文件</p>
-
+        <p>Android开发工具Gradle的安装以及使用<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/Gradle编译/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -340,28 +243,15 @@ make px4-v2
     </header>
     <div class="entry">
       
-        <h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><ul>
-<li><a href="http://tools.android-studio.org/index.php" target="_blank" rel="external">Android Studio</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">JDK</a></li>
-</ul>
-<h1 id="屏蔽向导"><a href="#屏蔽向导" class="headerlink" title="屏蔽向导"></a>屏蔽向导</h1><p>将下载好的Android Studio解压到想要放置的位置，修改<code>/bin/idea.properties</code>，在最末行添加<code>disable.android.first.run=true</code>，这样在初次运行时就可以避开向导。</p>
-<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><p>运行<code>/bin/studio.sh</code>，直接进入成功安装后的界面，但此时无法新建工程，SDK Manager也无法运行。在setting中的Proxy中设置代理，可用的代理在<a href="http://tools.android-studio.org/index.php/proxy" target="_blank" rel="external">这里</a></p>
-<h1 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h1><p>可能由于我的电脑是64位系统，如果直接安装会出现<strong>unable to run mksdcard sdk tool</strong>这样的错误，因此，要安装Android Studio还必须安装以下依赖库</p>
-<p><code>sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</code></p>
-<h1 id="正常安装"><a href="#正常安装" class="headerlink" title="正常安装"></a>正常安装</h1><p>恢复<code>/bin/idea.properties</code>，再次运行<code>/bin/studio.sh</code>，正常安装即可。</p>
-<h1 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h1><p>Android Studio自带的模拟器虽然在不断完善，然而我采用号称最快的Android模拟器——Genymotion</p>
-<ul>
-<li>首先安装<a href="https://www.virtualbox.org/" target="_blank" rel="external">Virtualbox</a>，这个需要注意版本要在5.0.4以上</li>
-<li>安装<a href="https://www.genymotion.com/" target="_blank" rel="external">Genymotion</a>，除了安装以外，还需要注册账号，并申请License</li>
-<li>安装Androd Studio插件，如果网络不给力的话，可以在<a href="https://www.genymotion.com/plugins/" target="_blank" rel="external">这里</a>下载手动安装</li>
-<li>这样就可以在Android Studio中启动Genymotion，第一次运行需要指定安装目录</li>
-<li>下载想要的Android机，Enjoy~</li>
-</ul>
-
+        <p>Android Studio的安装方法<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/Android Studio安装/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -389,35 +279,15 @@ make px4-v2
     </header>
     <div class="entry">
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>GoAgent的续作，具体使用方法参见<a href="https://github.com/XX-net/XX-Net" target="_blank" rel="external">XX-net</a></p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li><p>将XX-net作为后台服务运行</p>
-<ul>
-<li>将XX-bet.sh路径添加到~/bashrc</li>
-<li>启动：<code>sudo ./xx_net.sh start</code></li>
-<li>停止：<code>sudo ./xx_net.sh stop</code></li>
-<li>重启：<code>sudo ./xx_net.sh restart</code></li>
-</ul>
-</li>
-<li><p>系统全局代理</p>
-<ul>
-<li>在终端执行<code>export http_proxy=http://localhost:8085</code></li>
-<li>如果想始终代理，可在~/bashrc中添加上述命令</li>
-</ul>
-</li>
-<li><p>部署服务端</p>
-<ul>
-<li>使用部署工具部署</li>
-<li><code>cd ~/Source/XX-Net/code/default/gae_proxy/server/</code></li>
-<li><code>sudo python uploader.py &quot;appid&quot;</code></li>
-</ul>
-</li>
-</ol>
-
+        <p>科学上网工具XX-Net的使用<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/科学上网/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -445,23 +315,15 @@ make px4-v2
     </header>
     <div class="entry">
       
-        <h1 id="公钥"><a href="#公钥" class="headerlink" title="公钥"></a>公钥</h1><p><strong>W: 以下 ID 的密钥没有可用的公钥：</strong><br><strong>8B48AD6246925553</strong></p>
-<p>执行</p>
-<p><code>gpg --keyserver subkeys.pgp.net --recv xxx</code></p>
-<p><code>gpg --export --armor xxx | sudo apt-key add -</code></p>
-<p>xxx为密钥后8位</p>
-<h1 id="list"><a href="#list" class="headerlink" title="list"></a>list</h1><p><strong>无法下载 <a href="http://dl.google.com/linux/chrome/deb/dists/stable/Release" target="_blank" rel="external">http://dl.google.com/linux/chrome/deb/dists/stable/Release</a>  Unable to find expected entry ‘main/binary-i386/Packages’ in Release file (Wrong sources.list entry or malformed file)</strong></p>
-<ul>
-<li><code>cd /etc/apt/sources.list.d</code></li>
-<li><code>sudo gedit google-chrome.list</code></li>
-<li>将旧的源列表修改为<strong>deb [arch=amd64] <a href="http://dl.google.com/linux/chrome/deb/" target="_blank" rel="external">http://dl.google.com/linux/chrome/deb/</a> stable main</strong></li>
-<li>原因：官方的Chrome不再提供32位包</li>
-</ul>
-
+        <p>使用Apt-get的问题合集<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/Apt-get-Update-TroubleShooting/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -483,7 +345,7 @@ make px4-v2
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
+    <input type="hidden" name="q" value="site:innoecho.github.io">
   </form>
 </div>
 
@@ -492,7 +354,17 @@ make px4-v2
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Ubuntu/">Ubuntu</a><small>1</small></li>
+    <li><a href="/categories/Android/">Android</a><small>2</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>0</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Sublime/">Sublime</a><small>2</small></li>
+  
+    <li><a href="/categories/UAV/">UAV</a><small>1</small></li>
+  
+    <li><a href="/categories/Ubuntu/">Ubuntu</a><small>2</small></li>
   
   </ul>
 </div>
@@ -503,15 +375,31 @@ make px4-v2
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Android/">Android</a><small>2</small></li>
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>2</small></li>
+    <li><a href="/tags/Apt-get/">Apt-get</a><small>1</small></li>
   
-    <li><a href="/tags/UAV/">UAV</a><small>2</small></li>
+    <li><a href="/tags/Blog/">Blog</a><small>0</small></li>
   
-    <li><a href="/tags/Ubuntu/">Ubuntu</a><small>2</small></li>
+    <li><a href="/tags/Gradle/">Gradle</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>0</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/tags/Sublime/">Sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/Theme/">Theme</a><small>0</small></li>
+  
+    <li><a href="/tags/UAV/">UAV</a><small>1</small></li>
+  
+    <li><a href="/tags/Ubuntu/">Ubuntu</a><small>1</small></li>
   
     <li><a href="/tags/VPN/">VPN</a><small>1</small></li>
+  
+    <li><a href="/tags/微信/">微信</a><small>1</small></li>
+  
+    <li><a href="/tags/蓝牙/">蓝牙</a><small>1</small></li>
   
   </ul>
 </div>
