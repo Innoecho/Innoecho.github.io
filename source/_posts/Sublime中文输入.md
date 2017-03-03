@@ -1,8 +1,8 @@
 ---
 title: Sublime中文输入
+date: 2017-03-02 16:24:01
 tags: Sublime
 categories: Sublime
-date: 2017-03-02 16:24:01
 ---
 
 解决Sublime中无法输入中文的问题
