@@ -129,6 +129,17 @@ npm install hexo-deployer-git --save
 ```
 然后进行部署
 
+## 去除代码块的行号
+
+在*_config.yml*文件中的
+```
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+  tab_replace:
+```
+
 ## 博客源文件的保存
 
 `hexo deploy`命令是将生成的静态页面部署到Github仓库，如果想要同时保存源文件，那么可以在Github仓库中新建一个分支来保存，具体操作流程如下：
