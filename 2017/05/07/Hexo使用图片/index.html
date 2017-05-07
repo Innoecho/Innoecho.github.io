@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android | InnoBlog</title>
+  <title>Hexo引用本地图片 | InnoBlog</title>
   <meta name="author" content="Innoecho">
   
   <meta name="description" content="Innoecho&#39;s Blog">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Hexo引用本地图片"/>
   <meta property="og:site_name" content="InnoBlog"/>
 
   
@@ -46,25 +46,74 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">Android</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-05-07T08:32:21.000Z"><a href="/2017/05/07/Hexo使用图片/">2017-05-07</a></time>
+      
+      
+  
+    <h1 class="title">Hexo引用本地图片</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>通过使用<a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">hexo-asset-image</a>插件引用本地图片，解决Hexo直接引用本地图片路径混乱的问题<br><a id="more"></a></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>将<em>_config.yml</em>中参数<em>post_asset_folder</em>的值配置为<em>true</em></p>
+<p>这个参数使得在建立文件时，自动生成一个与文件同名的文件夹，用于存储资源文件</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在hexo目录下执行<code>npm install hexo-asset-image --save</code>命令安装插件</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>假设在相应的资源文件下存在图片文件为<em>logo.png</em>，使用如下语法引用图片</p>
+<p><code>![logo](logo.png)</code></p>
+<p><img src="/2017/05/07/Hexo使用图片/logo.png" alt="logo"></p>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-02T02:23:00.000Z"><a href="/2017/03/02/Android Studio安装/">2017-03-02</a></time>
-            
-              <h1 class="title"><a href="/2017/03/02/Android Studio安装/">Android Studio安装</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Hexo/">Hexo</a>
   </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2017/05/07/Hexo使用图片/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
