@@ -96,7 +96,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_14_0.png)
+![](PythonCV-1/output_14_0.png)
 
 
 ## 1.2.2 图像轮廓和直方图
@@ -129,7 +129,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_16_0.png)
+![](PythonCV-1/output_16_0.png)
 
 
 ## 1.2.3 交互式标注
@@ -217,7 +217,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_24_0.png)
+![](PythonCV-1/output_24_0.png)
 
 
 ## 1.3.3 图像缩放
@@ -259,7 +259,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_28_0.png)
+![](PythonCV-1/output_28_0.png)
 
 
 ## 1.3.5 图像平均
@@ -379,7 +379,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_36_0.png)
+![](PythonCV-1/output_36_0.png)
 
 
 ## 1.4.2 图像导数
@@ -423,7 +423,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_38_0.png)
+![](PythonCV-1/output_38_0.png)
 
 
 
@@ -465,7 +465,7 @@ show()
 ```
 
 
-![png](PythonCV-1/output_39_0.png)
+![](PythonCV-1/output_39_0.png)
 
 
 ## 1.4.3 形态学：对象计数
@@ -530,5 +530,5 @@ show()
 ```
 
 
-![png](PythonCV-1/output_43_0.png)
+![](PythonCV-1/output_43_0.png)
 
