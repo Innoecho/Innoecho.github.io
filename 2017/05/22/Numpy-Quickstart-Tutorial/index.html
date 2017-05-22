@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Numpy Quickstart Tutorial | InnoBlog</title>
+  <meta name="author" content="Innoecho">
+  
+  <meta name="description" content="Innoecho&#39;s Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Numpy Quickstart Tutorial"/>
+  <meta property="og:site_name" content="InnoBlog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/img/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="InnoBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">InnoBlog</a></h1>
+  <h2><a href="/">May The Force Be With You</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-05-22T12:58:13.000Z"><a href="/2017/05/22/Numpy-Quickstart-Tutorial/">2017-05-22</a></time>
+      
+      
+  
+    <h1 class="title">Numpy Quickstart Tutorial</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>QuickStart For Numpy<br><a id="more"></a></p>
+<h1 id="1-The-Basics"><a href="#1-The-Basics" class="headerlink" title="1. The Basics"></a>1. The Basics</h1><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="comment"># create am array and show</span></div><div class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line">a</div></pre></td></tr></table></figure>
+<pre><code>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># show every axis's length of an array</span></div><div class="line">a.shape</div></pre></td></tr></table></figure>
+<pre><code>(3, 5)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># show an array's dim</span></div><div class="line">a.ndim</div></pre></td></tr></table></figure>
+<pre><code>2
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># show data type of an array</span></div><div class="line">a.dtype</div></pre></td></tr></table></figure>
+<pre><code>dtype(&apos;int64&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># show itemsize of an array</span></div><div class="line">a.size</div></pre></td></tr></table></figure>
+<pre><code>15
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># show type of a</span></div><div class="line">type(a)</div></pre></td></tr></table></figure>
+<pre><code>numpy.ndarray
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># create another array</span></div><div class="line">b = np.array([<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</div><div class="line">b</div></pre></td></tr></table></figure>
+<pre><code>array([6, 7, 8])
+</code></pre><h1 id="2-Array-Creation"><a href="#2-Array-Creation" class="headerlink" title="2. Array Creation"></a>2. Array Creation</h1><h2 id="2-1-create-array-by-regular-Python-list-or-tuple"><a href="#2-1-create-array-by-regular-Python-list-or-tuple" class="headerlink" title="2.1 create array by regular Python list or tuple"></a>2.1 create array by regular Python list or tuple</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.array((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</div><div class="line">a</div></pre></td></tr></table></figure>
+<pre><code>array([2, 3, 4])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">b = np.array([<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])</div><div class="line">b</div></pre></td></tr></table></figure>
+<pre><code>array([5, 6, 7])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">c = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line">c</div></pre></td></tr></table></figure>
+<pre><code>array([[1, 2, 3],
+       [4, 5, 6]])
+</code></pre><h2 id="2-2-create-array-by-functions"><a href="#2-2-create-array-by-functions" class="headerlink" title="2.2 create array by functions"></a>2.2 create array by functions</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># zeros, default type is float64</span></div><div class="line">a = np.zeros((<span class="number">3</span>,<span class="number">4</span>))</div><div class="line">a.dtype</div></pre></td></tr></table></figure>
+<pre><code>dtype(&apos;float64&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># ones</span></div><div class="line">b = np.ones((<span class="number">2</span>, <span class="number">3</span>), dtype = np.int16)</div><div class="line">b</div></pre></td></tr></table></figure>
+<pre><code>array([[1, 1, 1],
+       [1, 1, 1]], dtype=int16)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># empty, it create an array by random item</span></div><div class="line"></div><div class="line">c = np.empty((<span class="number">2</span>, <span class="number">2</span>))</div><div class="line">c</div></pre></td></tr></table></figure>
+<pre><code>array([[  6.94428861e-310,   1.15911595e-316],
+       [  4.76862566e+180,   1.63041663e-322]])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># arange, give the begin, the step and the and</span></div><div class="line"></div><div class="line">np.arange(<span class="number">10</span>, <span class="number">30</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<pre><code>array([10, 15, 20, 25])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># linspace, give the begin, the end and the number of elements</span></div><div class="line"></div><div class="line">np.linspace(<span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span>)</div></pre></td></tr></table></figure>
+<pre><code>array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ,  1.25,  1.5 ,  1.75,  2.  ])
+</code></pre><h1 id="3-printing-Arrays"><a href="#3-printing-Arrays" class="headerlink" title="3. printing Arrays"></a>3. printing Arrays</h1><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 1d array</span></div><div class="line"></div><div class="line">a = np.arange(<span class="number">6</span>)</div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>[0 1 2 3 4 5]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 2d array</span></div><div class="line"></div><div class="line">b = np.arange(<span class="number">12</span>).reshape(<span class="number">4</span>,<span class="number">3</span>)</div><div class="line">print(b)</div></pre></td></tr></table></figure>
+<pre><code>[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># too long array</span></div><div class="line"></div><div class="line">print(np.arange(<span class="number">10000</span>))</div></pre></td></tr></table></figure>
+<pre><code>[   0    1    2 ..., 9997 9998 9999]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">print(np.arange(<span class="number">10000</span>).reshape(<span class="number">100</span>, <span class="number">100</span>))</div></pre></td></tr></table></figure>
+<pre><code>[[   0    1    2 ...,   97   98   99]
+ [ 100  101  102 ...,  197  198  199]
+ [ 200  201  202 ...,  297  298  299]
+ ..., 
+ [9700 9701 9702 ..., 9797 9798 9799]
+ [9800 9801 9802 ..., 9897 9898 9899]
+ [9900 9901 9902 ..., 9997 9998 9999]]
+</code></pre><h1 id="4-Basic-Operations"><a href="#4-Basic-Operations" class="headerlink" title="4. Basic Operations"></a>4. Basic Operations</h1><h2 id="4-1-Arithmetic-operations-on-arrays-apply-elementwise"><a href="#4-1-Arithmetic-operations-on-arrays-apply-elementwise" class="headerlink" title="4.1 Arithmetic operations on arrays apply elementwise"></a>4.1 Arithmetic operations on arrays apply elementwise</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># + - * /</span></div><div class="line">a = np.arange(<span class="number">4</span>, dtype = np.float64)</div><div class="line">b = np.array([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</div><div class="line">print(a+b)</div><div class="line">print(a-b)</div><div class="line">print(a*b)</div><div class="line">print(a/b)</div></pre></td></tr></table></figure>
+<pre><code>[ 2.  4.  6.  8.]
+[-2. -2. -2. -2.]
+[  0.   3.   8.  15.]
+[ 0.          0.33333333  0.5         0.6       ]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># others</span></div><div class="line">print(b**<span class="number">2</span>)</div><div class="line">print(np.sin(a))</div><div class="line">print(a&lt;<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<pre><code>[ 4  9 16 25]
+[ 0.          0.84147098  0.90929743  0.14112001]
+[ True  True  True False]
+</code></pre><h2 id="4-2-matrix-product"><a href="#4-2-matrix-product" class="headerlink" title="4.2 matrix product"></a>4.2 matrix product</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</div><div class="line">B = np.array([[<span class="number">4</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">1</span>]])</div><div class="line"><span class="comment"># multi by element</span></div><div class="line">print(A*B)</div><div class="line"><span class="comment"># matrix multi</span></div><div class="line">print(A.dot(B))</div></pre></td></tr></table></figure>
+<pre><code>[[4 4]
+ [9 4]]
+[[10  4]
+ [24 10]]
+</code></pre><h2 id="4-3-unary-operations"><a href="#4-3-unary-operations" class="headerlink" title="4.3 unary operations"></a>4.3 unary operations</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a = np.arange(<span class="number">1</span>, <span class="number">5</span>)</div><div class="line">print(a)</div><div class="line">print(a.sum())</div><div class="line">print(a.max())</div><div class="line">print(a.min())</div></pre></td></tr></table></figure>
+<pre><code>[1 2 3 4]
+10
+4
+1
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># for 2d</span></div><div class="line"></div><div class="line">b = np.arange(<span class="number">1</span>, <span class="number">5</span>).reshape(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">print(b)</div><div class="line">print(b.sum())</div><div class="line">print(b.sum(axis = <span class="number">0</span>))</div></pre></td></tr></table></figure>
+<pre><code>[[1 2]
+ [3 4]]
+10
+[4 6]
+</code></pre><h1 id="5-Universal-Functions"><a href="#5-Universal-Functions" class="headerlink" title="5. Universal Functions"></a>5. Universal Functions</h1><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">B = np.arange(<span class="number">3</span>)</div><div class="line">print(np.exp(B))</div><div class="line">print(np.sqrt(B))</div></pre></td></tr></table></figure>
+<pre><code>[ 1.          2.71828183  7.3890561 ]
+[ 0.          1.          1.41421356]
+</code></pre><p>See also:</p>
+<p>all, any, apply_along_axis, argmax, argmin, argsort, average, bincount, ceil, clip, conj, corrcoef, cov, cross, cumprod, cumsum, diff, dot, floor, inner, inv, lexsort, max, maximum, mean, median, min, minimum, nonzero, outer, prod, re, round, sort, std, sum, trace, transpose, var, vdot, vectorize, where</p>
+<h1 id="6-Indexing-Slicing-and-Iterating"><a href="#6-Indexing-Slicing-and-Iterating" class="headerlink" title="6. Indexing, Slicing and Iterating"></a>6. Indexing, Slicing and Iterating</h1><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a = np.arange(<span class="number">10</span>)**<span class="number">3</span></div><div class="line">a</div></pre></td></tr></table></figure>
+<pre><code>array([  0,   1,   8,  27,  64, 125, 216, 343, 512, 729])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">print(a[<span class="number">2</span>])</div><div class="line">print(a[<span class="number">2</span>:<span class="number">5</span>])</div></pre></td></tr></table></figure>
+<pre><code>8
+[ 8 27 64]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a[:<span class="number">6</span>:<span class="number">2</span>] = <span class="number">-1000</span></div><div class="line">print(a)</div><div class="line">print(a[::<span class="number">-1</span>])</div></pre></td></tr></table></figure>
+<pre><code>[-1000     1 -1000    27 -1000   125   216   343   512   729]
+[  729   512   343   216   125 -1000    27 -1000     1 -1000]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># create arrays from function</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x, y)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>*x+y</div><div class="line"></div><div class="line">b = np.fromfunction(f, (<span class="number">5</span>, <span class="number">4</span>), dtype = int)</div><div class="line">print(b)</div></pre></td></tr></table></figure>
+<pre><code>[[ 0  1  2  3]
+ [10 11 12 13]
+ [20 21 22 23]
+ [30 31 32 33]
+ [40 41 42 43]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">print(b[<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(b[<span class="number">0</span>:<span class="number">5</span>,<span class="number">1</span>])</div><div class="line">print(b[:,<span class="number">1</span>])</div><div class="line">print(b[<span class="number">-1</span>])</div></pre></td></tr></table></figure>
+<pre><code>23
+[ 1 11 21 31 41]
+[ 1 11 21 31 41]
+[40 41 42 43]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># flat is an iterator and flatten is a function</span></div><div class="line">A = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]])</div><div class="line">print(A)</div><div class="line">print(A.flatten())</div><div class="line"><span class="keyword">for</span> element <span class="keyword">in</span> A.flat:</div><div class="line">    print(element)</div></pre></td></tr></table></figure>
+<pre><code>[[1 2]
+ [3 4]]
+[1 2 3 4]
+1
+2
+3
+4
+</code></pre><h1 id="7-Shape-Manipulation"><a href="#7-Shape-Manipulation" class="headerlink" title="7. Shape Manipulation"></a>7. Shape Manipulation</h1><h2 id="7-1-Changing-the-shape-of-an-array"><a href="#7-1-Changing-the-shape-of-an-array" class="headerlink" title="7.1 Changing the shape of an array"></a>7.1 Changing the shape of an array</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># create an array</span></div><div class="line"></div><div class="line">a = np.floor(<span class="number">10</span>*np.random.random((<span class="number">3</span>,<span class="number">4</span>)))</div><div class="line">a</div></pre></td></tr></table></figure>
+<pre><code>array([[ 7.,  1.,  9.,  6.],
+       [ 9.,  1.,  5.,  9.],
+       [ 9.,  7.,  9.,  1.]])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a.shape</div></pre></td></tr></table></figure>
+<pre><code>(3, 4)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># return the array, flattened</span></div><div class="line">print(a.ravel())</div></pre></td></tr></table></figure>
+<pre><code>[ 7.  1.  9.  6.  9.  1.  5.  9.  9.  7.  9.  1.]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># return the array with modified shape</span></div><div class="line">print(a.reshape(<span class="number">6</span>,<span class="number">2</span>))</div></pre></td></tr></table></figure>
+<pre><code>[[ 7.  1.]
+ [ 9.  6.]
+ [ 9.  1.]
+ [ 5.  9.]
+ [ 9.  7.]
+ [ 9.  1.]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># return the array, transposed</span></div><div class="line">print(a.T)</div></pre></td></tr></table></figure>
+<pre><code>[[ 7.  9.  9.]
+ [ 1.  1.  7.]
+ [ 9.  5.  9.]
+ [ 6.  9.  1.]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># the above three commands all return a modified array, but do not change the original array</span></div><div class="line"><span class="comment"># the resize function modifies the array itself</span></div><div class="line">print(a)</div><div class="line">print(a.resize(<span class="number">2</span>,<span class="number">6</span>))</div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>[[ 7.  1.  9.  6.]
+ [ 9.  1.  5.  9.]
+ [ 9.  7.  9.  1.]]
+None
+[[ 7.  1.  9.  6.  9.  1.]
+ [ 5.  9.  9.  7.  9.  1.]]
+</code></pre><h2 id="7-2-Stacking-together-different-arrays"><a href="#7-2-Stacking-together-different-arrays" class="headerlink" title="7.2 Stacking together different arrays"></a>7.2 Stacking together different arrays</h2><p>vstack() and hstack()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a = np.arange(<span class="number">1</span>,<span class="number">5</span>).reshape(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line">b = np.arange(<span class="number">5</span>,<span class="number">9</span>).reshape(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line">print(a)</div><div class="line">print(b)</div><div class="line">print(np.vstack((a,b)))</div><div class="line">print(np.hstack((a,b)))</div></pre></td></tr></table></figure>
+<pre><code>[[1 2]
+ [3 4]]
+[[5 6]
+ [7 8]]
+[[1 2]
+ [3 4]
+ [5 6]
+ [7 8]]
+[[1 2 5 6]
+ [3 4 7 8]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">np.r_[<span class="number">1</span>:<span class="number">4</span>,<span class="number">0</span>,<span class="number">4</span>]</div></pre></td></tr></table></figure>
+<pre><code>array([1, 2, 3, 0, 4])
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">np.c_[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]</div></pre></td></tr></table></figure>
+<pre><code>array([[1, 3, 5, 7]])
+</code></pre><h2 id="7-3-Splitting-one-array-into-several-smaller-ones"><a href="#7-3-Splitting-one-array-into-several-smaller-ones" class="headerlink" title="7.3 Splitting one array into several smaller ones"></a>7.3 Splitting one array into several smaller ones</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">a = np.arange(<span class="number">1</span>,<span class="number">25</span>).reshape(<span class="number">2</span>,<span class="number">12</span>)</div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>[[ 1  2  3  4  5  6  7  8  9 10 11 12]
+ [13 14 15 16 17 18 19 20 21 22 23 24]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">print(np.hsplit(a,<span class="number">3</span>))</div></pre></td></tr></table></figure>
+<pre><code>[array([[ 1,  2,  3,  4],
+       [13, 14, 15, 16]]), array([[ 5,  6,  7,  8],
+       [17, 18, 19, 20]]), array([[ 9, 10, 11, 12],
+       [21, 22, 23, 24]])]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># split the array after the third and the fourth column</span></div><div class="line"></div><div class="line">print(np.hsplit(a,(<span class="number">3</span>,<span class="number">4</span>)))</div></pre></td></tr></table></figure>
+<pre><code>[array([[ 1,  2,  3],
+       [13, 14, 15]]), array([[ 4],
+       [16]]), array([[ 5,  6,  7,  8,  9, 10, 11, 12],
+       [17, 18, 19, 20, 21, 22, 23, 24]])]
+</code></pre><h1 id="8-Copies-and-Views"><a href="#8-Copies-and-Views" class="headerlink" title="8. Copies and Views"></a>8. Copies and Views</h1><h2 id="8-1-No-Copy-at-All"><a href="#8-1-No-Copy-at-All" class="headerlink" title="8.1 No Copy at All"></a>8.1 No Copy at All</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># Simple assignments</span></div><div class="line"></div><div class="line">a = np.arange(<span class="number">12</span>)</div><div class="line">b = a</div><div class="line">print(b <span class="keyword">is</span> a)</div><div class="line">b.shape = <span class="number">3</span>,<span class="number">4</span></div><div class="line">print(a.shape)</div></pre></td></tr></table></figure>
+<pre><code>True
+(3, 4)
+</code></pre><h2 id="8-2-View-or-Shallow-Copy"><a href="#8-2-View-or-Shallow-Copy" class="headerlink" title="8.2 View or Shallow Copy"></a>8.2 View or Shallow Copy</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># the view method creates a new array object that share the same data</span></div><div class="line"></div><div class="line">c = a.view()</div><div class="line">print(c <span class="keyword">is</span> a)</div><div class="line">print(c.base <span class="keyword">is</span> a)</div><div class="line">print(c.flags.owndata)</div></pre></td></tr></table></figure>
+<pre><code>False
+True
+False
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># a's shape doesn't change</span></div><div class="line"></div><div class="line">c.shape = <span class="number">2</span>,<span class="number">6</span></div><div class="line">print(a.shape)</div></pre></td></tr></table></figure>
+<pre><code>(3, 4)
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># a's data changes</span></div><div class="line">print(c)</div><div class="line">c[<span class="number">0</span>,<span class="number">4</span>] = <span class="number">1234</span></div><div class="line">print(c)</div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+[[   0    1    2    3 1234    5]
+ [   6    7    8    9   10   11]]
+[[   0    1    2    3]
+ [1234    5    6    7]
+ [   8    9   10   11]]
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># slicing an array returns a view of it</span></div><div class="line"></div><div class="line">s = a[:,<span class="number">1</span>:<span class="number">3</span>]</div><div class="line">s[:] = <span class="number">10</span></div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>[[   0   10   10    3]
+ [1234   10   10    7]
+ [   8   10   10   11]]
+</code></pre><h2 id="8-3-Deep-Copy"><a href="#8-3-Deep-Copy" class="headerlink" title="8.3 Deep Copy"></a>8.3 Deep Copy</h2><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment"># the copy method makes a complete copy of the array and its data</span></div><div class="line"></div><div class="line">d = a.copy()</div><div class="line">print(d <span class="keyword">is</span> a)</div><div class="line">print(d.base <span class="keyword">is</span> a)</div><div class="line">d[<span class="number">0</span>,<span class="number">0</span>] = <span class="number">9999</span></div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<pre><code>False
+False
+[[   0   10   10    3]
+ [1234   10   10    7]
+ [   8   10   10   11]]
+</code></pre><h1 id="9-Indexing-with-Boolean-Arrays"><a href="#9-Indexing-with-Boolean-Arrays" class="headerlink" title="9. Indexing with Boolean Arrays"></a>9. Indexing with Boolean Arrays</h1><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mandelbrot</span><span class="params">(h, w, maxit=<span class="number">20</span>)</span>:</span></div><div class="line">    <span class="string">""" return an image of the Mandelbrot fractal of size (h, w)"""</span></div><div class="line">    y,x = np.ogrid[<span class="number">-1.4</span>:<span class="number">1.4</span>:h*<span class="number">1j</span>, <span class="number">-2</span>:<span class="number">0.8</span>:w*<span class="number">1j</span>]</div><div class="line">    c = x + y * <span class="number">1j</span></div><div class="line">    z = c</div><div class="line">    divtime = maxit + np.zeros(z.shape, dtype = int)</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(maxit):</div><div class="line">        z = z**<span class="number">2</span> + c</div><div class="line">        <span class="comment"># who is diverging</span></div><div class="line">        diverge = z*np.conj(z) &gt; <span class="number">2</span>**<span class="number">2</span></div><div class="line">        <span class="comment"># who is diverging now</span></div><div class="line">        div_now = diverge &amp; (divtime == maxit)</div><div class="line">        <span class="comment"># note when</span></div><div class="line">        divtime[div_now] = i</div><div class="line">        <span class="comment"># avoid diverging too much</span></div><div class="line">        z[diverge] = <span class="number">2</span></div><div class="line">        </div><div class="line">    <span class="keyword">return</span> divtime</div><div class="line"></div><div class="line">plt.imshow(mandelbrot(<span class="number">400</span>,<span class="number">400</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/2017/05/22/Numpy-Quickstart-Tutorial/output_66_0.png" alt=""></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>, <a href="/tags/Numpy/">Numpy</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2017/05/22/Numpy-Quickstart-Tutorial/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:innoecho.github.io">
+  </form>
+</div>		
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Android/">Android</a><small>2</small></li>
+  
+    <li><a href="/categories/CV/">CV</a><small>1</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>3</small></li>
+  
+    <li><a href="/categories/Sublime/">Sublime</a><small>1</small></li>
+  
+    <li><a href="/categories/UAV/">UAV</a><small>2</small></li>
+  
+    <li><a href="/categories/Ubuntu/">Ubuntu</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apt-get/" style="font-size: 10px;">Apt-get</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CV/" style="font-size: 10px;">CV</a> <a href="/tags/Compile/" style="font-size: 10px;">Compile</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/PIL/" style="font-size: 13.33px;">PIL</a> <a href="/tags/PixHawk/" style="font-size: 10px;">PixHawk</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Theme/" style="font-size: 10px;">Theme</a> <a href="/tags/UAV/" style="font-size: 10px;">UAV</a> <a href="/tags/Ubuntu/" style="font-size: 13.33px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/XX-Net/" style="font-size: 10px;">XX-Net</a> <a href="/tags/公众号/" style="font-size: 10px;">公众号</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 Innoecho
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
