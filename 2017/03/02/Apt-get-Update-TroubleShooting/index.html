@@ -68,12 +68,19 @@
 <p><code>gpg --keyserver subkeys.pgp.net --recv xxx</code></p>
 <p><code>gpg --export --armor xxx | sudo apt-key add -</code></p>
 <p>xxx为密钥后8位</p>
-<h1 id="list"><a href="#list" class="headerlink" title="list"></a>list</h1><p><strong>无法下载 <a href="http://dl.google.com/linux/chrome/deb/dists/stable/Release" target="_blank" rel="external">http://dl.google.com/linux/chrome/deb/dists/stable/Release</a>  Unable to find expected entry ‘main/binary-i386/Packages’ in Release file (Wrong sources.list entry or malformed file)</strong></p>
+<h1 id="Chrome源"><a href="#Chrome源" class="headerlink" title="Chrome源"></a>Chrome源</h1><p><strong>无法下载 <a href="http://dl.google.com/linux/chrome/deb/dists/stable/Release" target="_blank" rel="external">http://dl.google.com/linux/chrome/deb/dists/stable/Release</a>  Unable to find expected entry ‘main/binary-i386/Packages’ in Release file (Wrong sources.list entry or malformed file)</strong></p>
 <ul>
 <li><code>cd /etc/apt/sources.list.d</code></li>
 <li><code>sudo gedit google-chrome.list</code></li>
 <li>将旧的源列表修改为<strong>deb [arch=amd64] <a href="http://dl.google.com/linux/chrome/deb/" target="_blank" rel="external">http://dl.google.com/linux/chrome/deb/</a> stable main</strong></li>
 <li>原因：官方的Chrome不再提供32位包</li>
+</ul>
+<h1 id="删除源"><a href="#删除源" class="headerlink" title="删除源"></a>删除源</h1><p><strong>W:无法下载…</strong></p>
+<p>解决办法：将对应的PPA删掉</p>
+<ul>
+<li><code>cd /etc/apt/sources.list.d</code></li>
+<li><code>ls</code></li>
+<li><code>sudo mv &lt;***&gt;.list &lt;***&gt;.list.bak</code></li>
 </ul>
 
       
