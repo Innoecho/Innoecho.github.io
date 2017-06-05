@@ -21,7 +21,7 @@ categories: Ubuntu
 
 xxx为密钥后8位
 
-# list
+# Chrome源
 
 **无法下载 http://dl.google.com/linux/chrome/deb/dists/stable/Release  Unable to find expected entry 'main/binary-i386/Packages' in Release file (Wrong sources.list entry or malformed file)**
 
@@ -29,3 +29,15 @@ xxx为密钥后8位
 - `sudo gedit google-chrome.list`
 - 将旧的源列表修改为**deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main**
 - 原因：官方的Chrome不再提供32位包
+
+# 删除源
+
+**W:无法下载...**
+
+解决办法：将对应的PPA删掉
+
+- `cd /etc/apt/sources.list.d`
+- `ls`
+- `sudo mv <***>.list <***>.list.bak`
+
+
