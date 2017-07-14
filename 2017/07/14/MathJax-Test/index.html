@@ -63,6 +63,26 @@
     <div class="entry">
       
         <p>Use MathJax to show math equation<br><a id="more"></a><br>$$<br>\begin{eqnarray}<br>\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\<br>\nabla\cdot\vec{B} &amp;=&amp; 0 \\<br>\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\<br>\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)<br>\end{eqnarray}<br>$$</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>MathJax allows you to include mathematics in your web pages, either using LaTeX, MathML, or AsciiMath notation, and the mathematics will be processed using JavaScript to produce HTML, SVG or MathML equations for viewing in any modern browser.</p>
+<p>to use MathJax in the blog, We need to install a <a href="https://github.com/hexojs/hexo-math" target="_blank" rel="external">plugin</a> to auto-deploy the Mathjax:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm install hexo-math --save</div><div class="line">hexo math install</div></pre></td></tr></table></figure></p>
+<p><strong>don’t add anything in _config.yml!!!</strong></p>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>if there are some trouble in using MathJax, Modify the file：<strong>./node_modules/marked/lib/marked.js</strong>:</p>
+<ul>
+<li>step1<br>replace<br><code>escape: /^\\([\\`*{}\[\]()# +\-.!_&gt;])/,</code><br>with<br><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></li>
+<li>step2<br>replace<br><code>em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code><br>with<br><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></li>
+</ul>
+<p><strong>please ignore above if your MathJax work well</strong></p>
+<h2 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h2><p>Use LaTeX to write math equation,like:</p>
+<ol>
+<li>sup(^) and sub(_)<br>$$ e^{i\pi}+1=0 $$</li>
+<li>frac<br>$$ \frac{1}{3} $$</li>
+<li>sqrt<br>$$ \sqrt[n]{x+y} $$</li>
+<li>vector<br>$$ \vec{a}\cdot\vec{b} = 0 $$</li>
+<li>integrate<br>$$ \int_0^1x^2{\rm d}x $$</li>
+<li>limit<br>$$ \lim_{n \rightarrow + \infty}\frac{1}{n(n+1)} $$</li>
+<li>sum<br>$$ \sum_{i=0}^n\frac{1}{i^2} $$</li>
+<li>greek alphabet<br>$$<br>\alpha \quad \beta \quad \gamma \quad \delta \quad \epsilon \quad \theta \quad \lambda \quad<br>\mu \quad \eta \\<br>\nu \quad \xi \quad \pi \quad \rho \quad \sigma \quad \tau \quad \phi \quad \psi \quad \omega<br>$$</li>
+</ol>
 
       
     </div>
@@ -71,13 +91,13 @@
         
   
   <div class="categories">
-    <a href="/categories/Test/">Test</a>
+    <a href="/categories/Hexo/">Hexo</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/Math/">Math</a>, <a href="/tags/Test/">Test</a>
+    <a href="/tags/Hexo/">Hexo</a>, <a href="/tags/Math/">Math</a>
   </div>
 
         
@@ -126,13 +146,11 @@
   
     <li><a href="/categories/CV/">CV</a><small>1</small></li>
   
-    <li><a href="/categories/Hexo/">Hexo</a><small>3</small></li>
+    <li><a href="/categories/Hexo/">Hexo</a><small>4</small></li>
   
     <li><a href="/categories/Python/">Python</a><small>3</small></li>
   
     <li><a href="/categories/Sublime/">Sublime</a><small>1</small></li>
-  
-    <li><a href="/categories/Test/">Test</a><small>1</small></li>
   
     <li><a href="/categories/UAV/">UAV</a><small>2</small></li>
   
@@ -146,7 +164,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apt-get/" style="font-size: 10px;">Apt-get</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CV/" style="font-size: 10px;">CV</a> <a href="/tags/Compile/" style="font-size: 10px;">Compile</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/PIL/" style="font-size: 13.33px;">PIL</a> <a href="/tags/PixHawk/" style="font-size: 10px;">PixHawk</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Theme/" style="font-size: 10px;">Theme</a> <a href="/tags/UAV/" style="font-size: 10px;">UAV</a> <a href="/tags/Ubuntu/" style="font-size: 13.33px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/XX-Net/" style="font-size: 10px;">XX-Net</a> <a href="/tags/公众号/" style="font-size: 10px;">公众号</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a>
+    <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apt-get/" style="font-size: 10px;">Apt-get</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CV/" style="font-size: 10px;">CV</a> <a href="/tags/Compile/" style="font-size: 10px;">Compile</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/PIL/" style="font-size: 15px;">PIL</a> <a href="/tags/PixHawk/" style="font-size: 10px;">PixHawk</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Theme/" style="font-size: 10px;">Theme</a> <a href="/tags/UAV/" style="font-size: 10px;">UAV</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/XX-Net/" style="font-size: 10px;">XX-Net</a> <a href="/tags/公众号/" style="font-size: 10px;">公众号</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/蓝牙/" style="font-size: 10px;">蓝牙</a>
   </div>
 </div>
 

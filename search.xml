@@ -3,13 +3,13 @@
   <entry>
     <title><![CDATA[MathJax Test]]></title>
     <url>%2F2017%2F07%2F14%2FMathJax-Test%2F</url>
-    <content type="text"><![CDATA[Use MathJax to show math equation$$\begin{eqnarray}\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\\nabla\cdot\vec{B} &amp;=&amp; 0 \\\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)\end{eqnarray}$$]]></content>
+    <content type="text"><![CDATA[Use MathJax to show math equation$$\begin{eqnarray}\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\\nabla\cdot\vec{B} &amp;=&amp; 0 \\\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)\end{eqnarray}$$ InstallMathJax allows you to include mathematics in your web pages, either using LaTeX, MathML, or AsciiMath notation, and the mathematics will be processed using JavaScript to produce HTML, SVG or MathML equations for viewing in any modern browser. to use MathJax in the blog, We need to install a plugin to auto-deploy the Mathjax:npm install hexo-math --savehexo math install don’t add anything in _config.yml!!! Noteif there are some trouble in using MathJax, Modify the file：./node_modules/marked/lib/marked.js: step1replaceescape: /^\\([\\`*{}\[\]()# +\-.!_&gt;])/,withescape: /^\\([`*\[\]()# +\-.!_&gt;])/, step2replaceem: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,withem:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/, please ignore above if your MathJax work well UseUse LaTeX to write math equation,like: sup(^) and sub(_)$$ e^{i\pi}+1=0 $$ frac$$ \frac{1}{3} $$ sqrt$$ \sqrt[n]{x+y} $$ vector$$ \vec{a}\cdot\vec{b} = 0 $$ integrate$$ \int_0^1x^2{\rm d}x $$ limit$$ \lim_{n \rightarrow + \infty}\frac{1}{n(n+1)} $$ sum$$ \sum_{i=0}^n\frac{1}{i^2} $$ greek alphabet$$\alpha \quad \beta \quad \gamma \quad \delta \quad \epsilon \quad \theta \quad \lambda \quad\mu \quad \eta \\\nu \quad \xi \quad \pi \quad \rho \quad \sigma \quad \tau \quad \phi \quad \psi \quad \omega$$]]></content>
       <categories>
-        <category>Test</category>
+        <category>Hexo</category>
       </categories>
       <tags>
+        <tag>Hexo</tag>
         <tag>Math</tag>
-        <tag>Test</tag>
       </tags>
   </entry>
   <entry>
