@@ -6,8 +6,7 @@ categories: CV
 ---
 
 基本的图像操作和处理
-<!--more-->
-
+<!-- more -->
 
 # 1.1 PIL
 

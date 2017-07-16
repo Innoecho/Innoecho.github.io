@@ -6,7 +6,8 @@ categories: Hexo
 ---
 
 Use MathJax to show math equation
-<!--more-->
+<!-- more -->
+
 $$
 \begin{eqnarray}
 \nabla\cdot\vec{E} &=& \frac{\rho}{\epsilon_0} \\

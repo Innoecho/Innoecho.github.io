@@ -6,7 +6,7 @@ categories: Ubuntu
 ---
 
 使用Apt-get的问题合集
-<!--more-->
+<!-- more -->
 
 # 公钥
 

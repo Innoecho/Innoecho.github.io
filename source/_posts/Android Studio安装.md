@@ -6,7 +6,7 @@ categories: Android
 ---
 
 Android Studio的安装方法
-<!--more-->
+<!-- more -->
 
 # 下载
 

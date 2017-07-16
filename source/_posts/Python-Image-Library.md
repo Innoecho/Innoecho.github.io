@@ -6,7 +6,7 @@ categories: Python
 ---
 
 Python图像库PIL的安装以及问题
-<!--more-->
+<!-- more -->
 
 ## 下载
 

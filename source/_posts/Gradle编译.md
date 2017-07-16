@@ -6,7 +6,7 @@ categories: Android
 ---
 
 Android开发工具Gradle的安装以及使用
-<!--more-->
+<!-- more -->
 
 # 下载Gradle
 

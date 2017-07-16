@@ -6,7 +6,7 @@ categories: Python
 ---
 
 QuickStart For Numpy
-<!--more-->
+<!-- more -->
 
 # 1. The Basics
 

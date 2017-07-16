@@ -6,9 +6,7 @@ categories: Hexo
 ---
 
 通过使用[hexo-asset-image](https://github.com/CodeFalling/hexo-asset-image)插件引用本地图片，解决Hexo直接引用本地图片路径混乱的问题
-<!--more-->
-
-
+<!-- more -->
 
 ## 配置
 

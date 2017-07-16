@@ -6,7 +6,7 @@ categories: Hexo
 ---
 
 收集的一些比较喜欢的Hexo主题
-<!--more-->
+<!-- more -->
 
 ### A
 

@@ -6,7 +6,7 @@ categories: Sublime
 ---
 
 解决Sublime中无法输入中文的问题
-<!--more-->
+<!-- more -->
 
 ### 准备工作
 

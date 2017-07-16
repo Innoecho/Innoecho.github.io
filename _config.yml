@@ -5,14 +5,14 @@
 # Site
 title: InnoBlog
 subtitle: May The Force Be With You
-description: Innoecho's Blog
+description: My Secret Garden
 author: Innoecho
 language: en
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://innoecho.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -39,7 +39,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: false
+  line_number: true
   auto_detect: false
   tab_replace:
 
@@ -63,7 +63,14 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: light
+theme: next
+# Search
+algolia:
+  applicationID: 3HHB5FVKN9
+  apiKey: 15e3290d81b2dd707d3b0bcd6cbdf459
+  adminApiKey: 'afc2378eea7bade8345bd56a37e0d4ec'
+  indexName: 'InnoBlog'
+  chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
